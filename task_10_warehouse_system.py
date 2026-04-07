@@ -38,9 +38,33 @@ for material, data in warehouse.items():
 print("=" * 50)
 print(f"ОБЩАЯ СТОИМОСТЬ: {total_cost:.2f} руб")
 
-
 # Поиск самого дорогого материала по цене за единицу
 most_expensive = max(warehouse, key=lambda material: warehouse[material]["price"])
 print(warehouse[most_expensive]["price"])
 max_price = warehouse[most_expensive]["price"] * warehouse[most_expensive]["quantity"]
 print(f"Самый дорогой: {most_expensive} ({max_price} руб)")
+
+# Вывод списка материалов с критическим остатком
+print(f"⚠ КРИТИЧЕСКИЕ ОСТАТКИ ({len(critical_materials)}):")
+for material in critical_materials:
+    print(f"- {material}: {warehouse[material]['quantity']} < {warehouse[material]['min_quantity']}")
+
+
+print("=== ВЫДАЧА МАТЕРИАЛА ===")
+material_name = input("Введите материал: ").strip().capitalize()
+# Проверка наличия материала на складе
+if material_name in warehouse:
+    issue_quantity = int(input("Введите количество: "))
+
+    # Проверка, хватает ли количества для выдачи
+    if warehouse[material_name]["quantity"] >= issue_quantity:
+        old_quantity = warehouse[material_name]["quantity"]
+        warehouse[material_name]["quantity"] -= issue_quantity
+        new_quantity = warehouse[material_name]["quantity"]
+
+        print(f"✓ Выдано {issue_quantity} единиц '{material_name}'")
+        print(f"Остаток: {old_quantity} -> {new_quantity}")
+    else:
+        print("Недостаточно материала на складе")
+else:
+    print("Материал не найден")
