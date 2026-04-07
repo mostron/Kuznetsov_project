@@ -15,7 +15,7 @@ floor_area = length * width
 walls_area = 2 * (length * height) + 2 * (width * height)
 
 # Объём помещения
-volume = length * width * height
+volume = length * width * hesight
 
 # Стоимость покраски стен
 painting_cost = walls_area * price
