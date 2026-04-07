@@ -13,7 +13,7 @@ print(f"== ПАСПОРТ СТРОИТЕЛЬНОГО ОБЪЕКТА ==\n"
       f"Группа: {group_number}\n"
       f"Объект: {project_name}\n"
       f"Этажность: {floors} этажей\n"
-      f"Высота: {total_height} м\n"
+      f"Высота: {height} м\n"
       f"Тип: {'Жилой' if is_residential else 'Нежилой'}\n"
       f"Год постройки: {construction_year}")
 
